@@ -1,18 +1,18 @@
-// This detects when you click on a drum button.
+// This detects when you click on a drum button; then it calls the makeSound() and buttonAnimation() functions with the required argument.
 var numberOfDrumButtons = document.querySelectorAll(".drum").length
 
 for (var i = 0; i<numberOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
-        
         var buttonInnerHTML = this.innerHTML;
-
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
-// This detects when you press the key on the keyboard.
+// This detects when you press the key on the keyboard; then it calls the makeSound() and buttonAnimation() functions with the required argument.
 document.addEventListener("keydown", function(event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 
@@ -50,7 +50,16 @@ function makeSound(key) {
             console.log(buttonInnerHTML)
             break;
     }
-};
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    // Below code uses setTimeout function to remove the pressed class after 1 second to create a "flash" effect.
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
 
 // Below is a more advanced way of doing the above with forEach and arrow functions.
 // let buttons = document.querySelectorAll("button");
