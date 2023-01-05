@@ -55,7 +55,7 @@ function makeSound(key) {
 function buttonAnimation(currentKey) {
     var activeButton = document.querySelector("." + currentKey);
     activeButton.classList.add("pressed");
-    // Below code uses setTimeout function to remove the pressed class after 1 second to create a "flash" effect.
+    // Below code uses setTimeout function to remove the pressed class after 0.1 seconds to create a "flash" effect.
     setTimeout(function() {
         activeButton.classList.remove("pressed");
     }, 100);
